@@ -15,10 +15,13 @@
     font-size: 2.5rem;
 }
 .footer{
-    min-height: 10vh;
+    min-height: 9vh;
     background-color: #000;
 }
 .search{
-    padding-right: 9%;
-    padding-left: 5%;
+    padding-right: 2.5%;
+}
+.checkbox{
+    padding-left: 8%;
+    padding-right: 0;
 }
