@@ -10,3 +10,5 @@ El proyecto consta de 5 secciones siendo estas:
 > - Past Events
 > - Contact
 > - Stats
+
+Para su visualizacion su adjunta el siguiente link: [https://matiascalvi.github.io/amazing-events_calvi/]( https://matiascalvi.github.io/amazing-events_calvi/)
