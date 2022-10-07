@@ -1,6 +1,6 @@
-let contenedorHome=document.getElementById("contenedor-cards-general")
-let contenedorUpcoming=document.getElementById("contenedor-cards-general-2")
-let contenedorPast=document.getElementById("contenedor-cards-general-3")
+let contenedor=document.getElementById("contenedor-cards-general")
+/* let contenedorUpcoming=document.getElementById("contenedor-cards-general-2")
+let contenedorPast=document.getElementById("contenedor-cards-general-3") */
 
 function imprimir(array,contenedor) {
   for(let i=0; i<array.length;i++){
@@ -39,13 +39,13 @@ let past=events.filter(event=>event.date<currentDate)
 console.log(past)
 switch(document.title){
   case 'Upcoming Events-Amazing Events':
-    imprimir(upconmig,contenedorUpcoming)
+    imprimir(upconmig,contenedor)
     break
   case 'Past Events-Amazing Events':
-    imprimir(past,contenedorPast)
+    imprimir(past,contenedor)
     break
   default:
-    imprimir(events,contenedorHome)
+    imprimir(events,contenedor)
     break
 }
 
