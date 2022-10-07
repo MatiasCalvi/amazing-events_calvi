@@ -34,9 +34,8 @@ function imprimir(array,contenedor) {
   }
 }
 let upconmig=events.filter(event=>event.date>currentDate)
-console.log(upconmig)
 let past=events.filter(event=>event.date<currentDate)
-console.log(past)
+
 switch(document.title){
   case 'Upcoming Events-Amazing Events':
     imprimir(upconmig,contenedor)
