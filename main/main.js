@@ -1,8 +1,10 @@
 let contenedor=document.getElementById("contenedor-cards-general")
 /* let contenedorUpcoming=document.getElementById("contenedor-cards-general-2")
 let contenedorPast=document.getElementById("contenedor-cards-general-3") */
+let hrefHome="./pages/details.html"
+let hrefOtros="./details.html"
 
-function imprimir(array,contenedor) {
+function imprimir(array,contenedor,condicion) {
   for(let i=0; i<array.length;i++){
       contenedor.innerHTML +=`
       <div
@@ -24,7 +26,7 @@ function imprimir(array,contenedor) {
       <div class="card-body d-flex justify-content-around pt-5">
         <p class="card-link mt-2">Price $${array[i].price}</p>
         <a
-          href="./pages/details.html"
+          href="${condicion}"
           class="btn btn-primary"
           style="height: 39.99px"
           >See more</a
@@ -38,13 +40,13 @@ let past=events.filter(event=>event.date<currentDate)
 
 switch(document.title){
   case 'Upcoming Events-Amazing Events':
-    imprimir(upconmig,contenedor)
+    imprimir(upconmig,contenedor,hrefOtros)
     break
   case 'Past Events-Amazing Events':
-    imprimir(past,contenedor)
+    imprimir(past,contenedor,hrefOtros)
     break
   default:
-    imprimir(events,contenedor)
+    imprimir(events,contenedor,hrefHome)
     break
 }
 
