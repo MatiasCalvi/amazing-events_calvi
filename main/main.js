@@ -1,6 +1,4 @@
 let contenedor=document.getElementById("contenedor-cards-general")
-/* let contenedorUpcoming=document.getElementById("contenedor-cards-general-2")
-let contenedorPast=document.getElementById("contenedor-cards-general-3") */
 let hrefHome="./pages/details.html"
 let hrefOtros="./details.html"
 
@@ -13,7 +11,7 @@ function imprimir(array,contenedor,condicion) {
     >
       <img
         src="${array[i].image}"
-        class="card-img-top"
+        class="card-img-top "
         height="171"
         alt="foto-disfraces"
       />
@@ -23,7 +21,7 @@ function imprimir(array,contenedor,condicion) {
           ${array[i].description}
         </p>
       </div>
-      <div class="card-body d-flex justify-content-around pt-5">
+      <div class="card-body d-flex justify-content-around ">
         <p class="card-link mt-2">Price $${array[i].price}</p>
         <a
           href="${condicion}"
