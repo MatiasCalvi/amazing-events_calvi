@@ -18,12 +18,16 @@
     min-height: 9vh;
     background-color: #000;
 }
+.cont{/* preguntar por que no funciona el flex en tamaño sm*/
+    display: flex;
+    flex-direction: column;
+}
 .search{
+    order: 0;
     padding-right: 2.5%;
 }
 .checkbox{
-    padding-left: 8%;
-    padding-right: 0;
+    order: 1;
 }
 .marginCardBody{
     height: 159.9px;
