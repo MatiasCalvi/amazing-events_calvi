@@ -100,71 +100,24 @@
     </div>
     <main class="bg-light" style="min-height: 58vh">
       <div
-      class="container-fluid d-sm-flex flex-sm-column flex-md-row justify-content-md-around pt-xl-4 cont"
-    >
-      <div class="container mt-5 checkbox bg-light d-md-flex flex-md-wrap justify-content-md-evenly order-md-0">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"
-            >Category
+        class="container-fluid d-sm-flex flex-sm-column flex-md-row justify-content-md-around pt-xl-4 cont"
+      >
+        <div
+          id="checkbox-contain"
+          class="container mt-5 checkbox bg-light d-md-flex flex-md-wrap justify-content-md-evenly order-md-0"
+        ></div>
+        <div class="container mt-5 search order-md-1">
+          <form class="d-flex" role="search">
             <input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-          /></label>
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"
-            >Category<input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
-          /></label>
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"
-            >Category<input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox3"
-              value="option2"
-          /></label>
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"
-            >Category
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox4"
-              value="option2"
-          /></label>
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"
-            >Category<input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox5"
-              value="option2"
-          /></label>
+              id="searchInput"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search the events"
+              aria-label="Search"
+            />
+          </form>
         </div>
       </div>
-      <div class="container mt-5 search order-md-1">
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-    </div>
       <div
         class="container-fluid d-flex justify-content-evenly px-0 pb-4 mt-4 flex-wrap"
         id="contenedor-cards-general"
@@ -209,7 +162,9 @@
           />
         </svg>
       </div>
-      <p style="color: white" class="pt-3 fs-3">Cohort 35</p>
+      <p style="color: white; padding-right: 0.5rem" class="pt-3 fs-3">
+        Cohort <span style="padding-left: 1rem">35</span>
+      </p>
     </footer>
     <script src="../main/data.js"></script>
     <script src="../main/main.js"></script>
