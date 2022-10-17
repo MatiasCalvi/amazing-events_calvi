@@ -52,8 +52,48 @@ function htmlCheck(array) {
   `;
 }
 
-function htmlActualizado(contenedorPadre) {
-  contenedorPadre.innerHTML = "";
+function imprimir(array, ruta) {
+  contenedorCard.innerHTML = "";
+  array.forEach((e) => htmlCard(e, ruta));
+}
+
+let applied = {};
+let categoriesFiltradas = [];
+
+function filterFn(fn, value, array, check) {
+  applied[fn] = value;
+
+  check
+    ? categoriesFiltradas.push(value)
+    : (categoriesFiltradas = categoriesFiltradas.filter(
+        (element) => element !== value
+      ));
+
+  for (let date in applied) {
+    if (date == "matchWithSearchBar") {
+      array = array.filter((evento) =>
+        evento.name.toLowerCase().includes(applied[date].toLowerCase())
+      );
+    }
+
+    if (date == "matchWithCheck") {
+      let auxiliar = [];
+      categoriesFiltradas.forEach(
+        (categoria) =>
+          (auxiliar = auxiliar.concat(
+            array.filter((element) =>
+              element.category.toLowerCase().includes(categoria.toLowerCase())
+            )
+          ))
+      );
+      console.log(auxiliar);
+      if (auxiliar.length > 0) {
+        array = auxiliar;
+      }
+    }
+  }
+
+  return array;
 }
 
 let upcoming = events.filter((event) => event.date > currentDate);
@@ -63,116 +103,71 @@ categories.forEach((events) => htmlCheck(events));
 
 switch (document.title) {
   case "Upcoming Events-Amazing Events":
-    upcoming.forEach((e) => htmlCard(e, hrefOtros));
+    imprimir(upcoming, hrefOtros);
 
     searchInput.addEventListener("input", (event) => {
-      htmlActualizado(contenedorCard);
-      let escribir = upcoming.filter((evento) =>
-        evento.name.toLowerCase().includes(event.target.value.toLowerCase())
+      let escribir = filterFn(
+        "matchWithSearchBar",
+        event.target.value,
+        upcoming
       );
-      escribir.forEach((e) => htmlCard(e, hrefOtros));
+      imprimir(escribir, hrefOtros);
     });
 
-    let categoriesUpcoming = [];
     contenedorCheck.addEventListener("change", (event) => {
-      htmlActualizado(contenedorCard);
-      if (event.target.checked) {
-        categoriesUpcoming = categoriesUpcoming.concat(
-          past.filter((evento) =>
-            evento.category
-              .toLowerCase()
-              .includes(event.target.value.toLowerCase())
-          )
-        );
-        categoriesUpcoming.forEach((e) => htmlCard(e, hrefOtros));
-      } else {
-        if (categoriesUpcoming.length > 0) {
-          categoriesUpcoming = categoriesUpcoming.filter(
-            (evento) =>
-              evento.category.toLowerCase() !== event.target.value.toLowerCase()
-          );
-          categoriesUpcoming.forEach((e) => htmlCard(e, hrefOtros));
-        }
-        if (categoriesUpcoming.length === 0) {
-          upcoming.forEach((e) => htmlCard(e, hrefOtros));
-        }
-      }
+      let prueba = filterFn(
+        "matchWithCheck",
+        event.target.value,
+        upcoming,
+        event.target.checked
+      );
+      imprimir(prueba, hrefOtros);
     });
     break;
 
   case "Past Events-Amazing Events":
-    past.forEach((e) => htmlCard(e, hrefOtros));
+    imprimir(past, hrefOtros);
 
     searchInput.addEventListener("input", (event) => {
-      htmlActualizado(contenedorCard);
-      let escribir = past.filter((evento) =>
-        evento.name.toLowerCase().includes(event.target.value.toLowerCase())
+      let escribir = filterFn(
+        "matchWithSearchBar",
+        event.target.value,
+        past
       );
-      escribir.forEach((e) => htmlCard(e, hrefOtros));
+      imprimir(escribir, hrefOtros);
     });
 
-    let categoriesPast = [];
     contenedorCheck.addEventListener("change", (event) => {
-      htmlActualizado(contenedorCard);
-      if (event.target.checked) {
-        categoriesPast = categoriesPast.concat(
-          past.filter((evento) =>
-            evento.category
-              .toLowerCase()
-              .includes(event.target.value.toLowerCase())
-          )
-        );
-        categoriesPast.forEach((e) => htmlCard(e, hrefOtros));
-      } else {
-        if (categoriesPast.length > 0) {
-          categoriesPast = categoriesPast.filter(
-            (evento) =>
-              evento.category.toLowerCase() !== event.target.value.toLowerCase()
-          );
-          categoriesPast.forEach((e) => htmlCard(e, hrefOtros));
-        }
-        if (categoriesPast.length === 0) {
-          past.forEach((e) => htmlCard(e, hrefOtros));
-        }
-      }
+      let prueba = filterFn(
+        "matchWithCheck",
+        event.target.value,
+        past,
+        event.target.checked
+      );
+      imprimir(prueba, hrefOtros);
     });
     break;
 
   default:
-    events.forEach((e) => htmlCard(e, hrefHome));
+    imprimir(events, hrefHome);
 
     searchInput.addEventListener("input", (event) => {
-      htmlActualizado(contenedorCard);
-      let escribir = events.filter((evento) =>
-        evento.name.toLowerCase().includes(event.target.value.toLowerCase())
+      let escribir = filterFn(
+        "matchWithSearchBar",
+        event.target.value,
+        events
       );
-      escribir.forEach((e) => htmlCard(e, hrefHome));
+      imprimir(escribir, hrefHome);
     });
 
-    let categories = [];
     contenedorCheck.addEventListener("change", (event) => {
-      htmlActualizado(contenedorCard);
-      if (event.target.checked) {
-        categories = categories.concat(
-          events.filter((evento) =>
-            evento.category
-              .toLowerCase()
-              .includes(event.target.value.toLowerCase())
-          )
-        );
-        categories.forEach((e) => htmlCard(e, hrefHome));
-      } else {
-        if (categories.length > 0) {
-          categories = categories.filter(
-            (evento) =>
-              evento.category.toLowerCase() !== event.target.value.toLowerCase()
-          );
-          categories.forEach((e) => htmlCard(e, hrefHome));
-        }
-        if (categories.length === 0) {
-          events.forEach((e) => htmlCard(e, hrefHome));
-        }
-      }
+      let prueba = filterFn(
+        "matchWithCheck",
+        event.target.value,
+        events,
+        event.target.checked
+      );
+      imprimir(prueba, hrefHome);
     });
     break;
 }
