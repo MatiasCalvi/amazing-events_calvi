@@ -60,7 +60,7 @@ function htmlCheck(array) {
 function htmlDetails(obj) {
   contenedorDetails.innerHTML = `
       <div
-        class="card mb-3 shadow-lg pb-2 mb-5 bg-body rounded d-flex flex-column justify-content-center"
+        class="card  shadow-lg pb-2 bg-body rounded d-flex flex-column justify-content-center"
         style="width: 100%; height: 35rem contenedor-cards-general"
       >
       <h6 class="text-center pt-1 pb-1 text-bg-dark fs-4">${obj.category}</h6>
