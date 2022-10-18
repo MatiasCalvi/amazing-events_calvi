@@ -60,9 +60,10 @@ function htmlCheck(array) {
 function htmlDetails(obj) {
   contenedorDetails.innerHTML = `
       <div
-        class="card mb-3 shadow-lg p-3 mb-5 bg-body rounded d-flex flex-column justify-content-center"
+        class="card mb-3 shadow-lg pb-2 mb-5 bg-body rounded d-flex flex-column justify-content-center"
         style="width: 100%; height: 35rem contenedor-cards-general"
       >
+      <h6 class="text-center pt-1 pb-1 text-bg-dark fs-4">${obj.category}</h6>
         <div class="row g-0">
           <div class="col-md-6 p-4">
             <img
@@ -73,7 +74,7 @@ function htmlDetails(obj) {
           </div>
           <div class="col-md-6">
             <div class="card-body">
-            <h6 class="text-center pt-1 pb-1 text-bg-dark fs-5">${obj.category}</h6>
+            
               <h1 class="card-title text-center fs-3 text-decoration-underline">${obj.name}</h1>
               <p class="text-center fs-4">${obj.date}</p>
               <p class="card-text pb-2 fs-5 text-center">
