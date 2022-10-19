@@ -57,19 +57,51 @@ function htmlCheck(array) {
   `;
 }
 
-function htmlDetails(obj) {
+function htmlDetailsUpcoming(obj) {
   contenedorDetails.innerHTML = `
       <div
         class="card  shadow-lg pb-2 bg-body rounded d-flex flex-column justify-content-center"
         style="width: 100%; height: 35rem contenedor-cards-general"
       >
-      <h6 class="text-center pt-1 pb-1 text-bg-dark fs-4">${obj.category}</h6>
+      <h6 class="text-center pt-1 pb-1 text-bg-dark fs-4 rounded-3">${obj.category}</h6>
         <div class="row g-0">
           <div class="col-md-6 p-4">
             <img
               src=${obj.image}
               class="img-fluid rounded-end mt-sm-4 mt-md-0 w-100 h-100"
-              alt="foto-maraton"
+              alt="${obj.name}"
+            />
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h1 class="card-title text-center fs-3 text-decoration-underline">${obj.name}</h1>
+              <p class="text-center fs-4">${obj.date}</p>
+              <p class="card-text pb-2 fs-5 text-center">
+              ${obj.description}
+              </p>
+              <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Place: </span>${obj.place}</p>
+              <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Capacity: </span>${obj.capacity}</p>
+              <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Expectative: </span>${obj.assistance}</p>
+              <p class="text-center fs-5" style="padding-right:2%"><span class="fw-bold">Price:</span> $${obj.price}<a href="#" class="btn btn-dark px-5" style="margin-left:4%">Buy</a></p>
+            </div>
+            </div>
+        </div>
+      </div>`;
+}
+
+function htmlDetailsPast(obj) {
+  contenedorDetails.innerHTML = `
+      <div
+        class="card  shadow-lg pb-2 bg-body rounded d-flex flex-column justify-content-center"
+        style="width: 100%; height: 35rem contenedor-cards-general "
+      >
+      <h6 class="text-center pt-1 pb-1 text-bg-dark fs-4 rounded-3">${obj.category}</h6>
+        <div class="row g-0">
+          <div class="col-md-6 p-4">
+            <img
+              src=${obj.image}
+              class="img-fluid rounded-end mt-sm-4 mt-md-0 w-100 h-100"
+              alt="${obj.name}"
             />
           </div>
           <div class="col-md-6">
@@ -83,7 +115,7 @@ function htmlDetails(obj) {
               <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Place: </span>${obj.place}</p>
               <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Capacity: </span>${obj.capacity}</p>
               <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Assistance: </span>${obj.assistance}</p>
-              <p class="text-center fs-5" style="padding-right:5%"><span class="fw-bold">Price:</span> $${obj.price}</p>
+              <p class="text-center fs-5" style="padding-right:2%"><span class="fw-bold">Price:</span> $${obj.price}<a href="#" class="btn btn-dark px-5" style="margin-left:4%">Buy</a></p>
             </div>
           </div>
         </div>
@@ -97,8 +129,8 @@ function imprimir(array, ruta) {
 
 function filterFn(fn, value, array, check) {
   applied[fn] = value;
-  console.log(fn)
-  console.log(applied)
+  console.log(fn);
+  console.log(applied);
   check
     ? categoriesFiltradas.push(value)
     : (categoriesFiltradas = categoriesFiltradas.filter(
@@ -165,11 +197,7 @@ switch (document.title) {
     });
 
     contenedorCheck.addEventListener("change", (event) => {
-      let prueba = filterFn(
-        "matchWithCheck",
-        past,
-        event.target.checked
-      );
+      let prueba = filterFn("matchWithCheck", past, event.target.checked);
       imprimir(prueba, hrefOtros);
     });
     break;
@@ -178,9 +206,12 @@ switch (document.title) {
     let id = location.search.slice(4);
     let details = events.filter((element) => element._id === Number(id));
     details = details[0];
-    console.log(details);
-    htmlDetails(details);
+    details.date < currentDate
+      ? htmlDetailsPast(details)
+      : htmlDetailsUpcoming(details);
+
     break;
+
   default:
     imprimir(events, hrefHome);
     categories.forEach((events) => htmlCheck(events));
