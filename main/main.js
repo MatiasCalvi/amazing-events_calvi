@@ -97,7 +97,8 @@ function imprimir(array, ruta) {
 
 function filterFn(fn, value, array, check) {
   applied[fn] = value;
-
+  console.log(fn)
+  console.log(applied)
   check
     ? categoriesFiltradas.push(value)
     : (categoriesFiltradas = categoriesFiltradas.filter(
@@ -166,7 +167,6 @@ switch (document.title) {
     contenedorCheck.addEventListener("change", (event) => {
       let prueba = filterFn(
         "matchWithCheck",
-        event.target.value,
         past,
         event.target.checked
       );
