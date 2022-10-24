@@ -233,7 +233,7 @@ function pricesByCategory(arrayF,arrayCate){
 
       let j=0
       for(let i of armade){
-          {i.revenues=results[j],i.percentageOfAttendance=(assistanceAllCategory[j]*100/capacityAllCategory[j]).toFixed(1)}
+          {i.revenues=results[j],i.percentageOfAttendance=(assistanceAllCategory[j]*100/capacityAllCategory[j]).toFixed(2)}
           j++
         }
       console.log(armade)
